@@ -54,8 +54,8 @@ exports.handler = async (event) => {
     if (b.type === "ai") {
       const base = (process.env.AI_BASE || "https://api.groq.com/openai/v1").trim();
       const model = b.vision
-        ? (process.env.AI_VISION_MODEL || "meta-llama/llama-4-scout-17b-16e-instruct").trim()
-        : (process.env.AI_MODEL || "llama-3.3-70b-versatile").trim();
+        ? (process.env.AI_VISION_MODEL || "qwen/qwen3.6-27b").trim()
+        : (process.env.AI_MODEL || "openai/gpt-oss-120b").trim();
       // FIX 3 again: trim the AI key.
       const aiKey = (process.env.AI_KEY || process.env.GROQ_API_KEY || "").trim();
       if (!aiKey) return send(500, { error: "AI_KEY missing on server" });
@@ -82,3 +82,4 @@ exports.handler = async (event) => {
     return send(500, { error: String(e.message || e) });
   }
 };
+                  
